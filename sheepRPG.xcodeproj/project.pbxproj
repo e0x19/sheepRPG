@@ -13,6 +13,7 @@
 		96CA38CC1B18B1AF00C05FBA /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 96CA38CB1B18B1AF00C05FBA /* Images.xcassets */; };
 		96CA38CF1B18B1AF00C05FBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96CA38CD1B18B1AF00C05FBA /* LaunchScreen.xib */; };
 		96CA38DB1B18B1AF00C05FBA /* sheepRPGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA38DA1B18B1AF00C05FBA /* sheepRPGTests.swift */; };
+		9F0881B41B18BB8900CA657F /* player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0881B31B18BB8900CA657F /* player.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		96CA38D41B18B1AF00C05FBA /* sheepRPGTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = sheepRPGTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		96CA38D91B18B1AF00C05FBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96CA38DA1B18B1AF00C05FBA /* sheepRPGTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sheepRPGTests.swift; sourceTree = "<group>"; };
+		9F0881B31B18BB8900CA657F /* player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = player.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				96CA38C41B18B1AF00C05FBA /* AppDelegate.swift */,
+				9F0881B31B18BB8900CA657F /* player.swift */,
 				96CA38C61B18B1AF00C05FBA /* ViewController.swift */,
 				96CA38C81B18B1AF00C05FBA /* Main.storyboard */,
 				96CA38CB1B18B1AF00C05FBA /* Images.xcassets */,
@@ -213,6 +216,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96CA38C71B18B1AF00C05FBA /* ViewController.swift in Sources */,
+				9F0881B41B18BB8900CA657F /* player.swift in Sources */,
 				96CA38C51B18B1AF00C05FBA /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -411,6 +415,7 @@
 				96CA38E01B18B1AF00C05FBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		96CA38E11B18B1AF00C05FBA /* Build configuration list for PBXNativeTarget "sheepRPGTests" */ = {
 			isa = XCConfigurationList;
@@ -419,6 +424,7 @@
 				96CA38E31B18B1AF00C05FBA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
