@@ -7,12 +7,12 @@
 //
 
 import UIKit
-import foundation
-import AVfoundation
+import Foundation
+import AVFoundation
 
 class ViewController: UIViewController {
     
-    var inGamePlayer = AVAudioPlayer()
+  /*  var inGamePlayer = AVAudioPlayer()
     var gameURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("game", ofType: "wav")!)
     
     var menuPlayer = AVAudioPlayer()
@@ -31,16 +31,17 @@ class ViewController: UIViewController {
     var start = UIImage(named:"Start") as UIImage?
     var creditbtn: UIButton!
     var menuLabel = UILabel()
-    var menuBG = UIImage(named:"title") as UIImage?
+    var menuBG = UIImage(named:"title") as UIImage?*/
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-       buildMenu()
+     //  buildMenu()
+        initialize()
     }
     
     func buildMenu()
-    {
+    {/*
         startbtn = UIButton.buttonWithType(UIButtonType.System) as UIButton
         startbtn.frame = CGRectMake(width/2 - 50, height/2 - 60, 100, 80)
         startbtn.setBackgroundImage(start, forState: UIControlState.Normal)
@@ -60,7 +61,7 @@ class ViewController: UIViewController {
         menuLabel.textAlignment = NSTextAlignment.Center
         menuLabel.font = UIFont(name: menuLabel.font.fontName, size: 18)
         menuLabel.text = "XTERM 2K15 ROUND2"
-        self.view.addSubview(menuLabel)
+        self.view.addSubview(menuLabel)*/
     }
    
 
