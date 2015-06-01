@@ -12,7 +12,11 @@ import UIKit
 
 class player
 {
+<<<<<<< HEAD
+    public init() {}
+=======
     internal init() {}
+>>>>>>> origin/master
     var xCord: CGFloat!
     var yCord: CGFloat!
     var size: Double!
