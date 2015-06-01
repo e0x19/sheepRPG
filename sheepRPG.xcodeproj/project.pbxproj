@@ -14,6 +14,7 @@
 		96CA38CF1B18B1AF00C05FBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96CA38CD1B18B1AF00C05FBA /* LaunchScreen.xib */; };
 		96CA38DB1B18B1AF00C05FBA /* sheepRPGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA38DA1B18B1AF00C05FBA /* sheepRPGTests.swift */; };
 		9F0881B41B18BB8900CA657F /* player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0881B31B18BB8900CA657F /* player.swift */; };
+		B43970221B1CB04F00ABC716 /* enemyObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43970211B1CB04F00ABC716 /* enemyObjects.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		96CA38D91B18B1AF00C05FBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96CA38DA1B18B1AF00C05FBA /* sheepRPGTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sheepRPGTests.swift; sourceTree = "<group>"; };
 		9F0881B31B18BB8900CA657F /* player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = player.swift; sourceTree = "<group>"; };
+		B43970211B1CB04F00ABC716 /* enemyObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = enemyObjects.swift; path = ../enemyObjects.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 			children = (
 				96CA38C41B18B1AF00C05FBA /* AppDelegate.swift */,
 				9F0881B31B18BB8900CA657F /* player.swift */,
+				B43970211B1CB04F00ABC716 /* enemyObjects.swift */,
 				96CA38C61B18B1AF00C05FBA /* ViewController.swift */,
 				96CA38C81B18B1AF00C05FBA /* Main.storyboard */,
 				96CA38CB1B18B1AF00C05FBA /* Images.xcassets */,
@@ -216,6 +219,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96CA38C71B18B1AF00C05FBA /* ViewController.swift in Sources */,
+				B43970221B1CB04F00ABC716 /* enemyObjects.swift in Sources */,
 				9F0881B41B18BB8900CA657F /* player.swift in Sources */,
 				96CA38C51B18B1AF00C05FBA /* AppDelegate.swift in Sources */,
 			);

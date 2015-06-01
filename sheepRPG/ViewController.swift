@@ -12,13 +12,8 @@ import AVFoundation
 
 class ViewController: UIViewController {
     
-<<<<<<< HEAD
     var inGamePlayer = AVAudioPlayer()
     //var gameURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("game", ofType: "wav")!)
-=======
-  /*  var inGamePlayer = AVAudioPlayer()
-    var gameURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("game", ofType: "wav")!)
->>>>>>> origin/master
     
     var menuPlayer = AVAudioPlayer()
     //var menuURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("menu", ofType: "wav")!)
@@ -33,31 +28,22 @@ class ViewController: UIViewController {
     var start = UIImage(named:"Start") as UIImage?
     var creditbtn: UIButton!
     var menuLabel = UILabel()
-<<<<<<< HEAD
     var menuBG = UIImage(named:"title") as UIImage?
     
     var sheep = player()
     
     // will be locally stored
-    var enemyNum = 1
-=======
-    var menuBG = UIImage(named:"title") as UIImage?*/
->>>>>>> origin/master
+    var enemyNum = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-<<<<<<< HEAD
         buildMenu()
-        
-=======
-     //  buildMenu()
         initialize()
->>>>>>> origin/master
     }
     
     func buildMenu()
-    {/*
+    {
         startbtn = UIButton.buttonWithType(UIButtonType.System) as UIButton
         startbtn.frame = CGRectMake(width/2 - 50, height/2 - 60, 100, 80)
         startbtn.setBackgroundImage(start, forState: UIControlState.Normal)
@@ -77,12 +63,7 @@ class ViewController: UIViewController {
         menuLabel.textAlignment = NSTextAlignment.Center
         menuLabel.font = UIFont(name: menuLabel.font.fontName, size: 18)
         menuLabel.text = "XTERM 2K15 ROUND2"
-<<<<<<< HEAD
         self.view.addSubview(menuLabel)
-        
-=======
-        self.view.addSubview(menuLabel)*/
->>>>>>> origin/master
     }
    
     func startGame()
