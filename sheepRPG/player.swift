@@ -11,6 +11,7 @@ import UIKit
 
 class player
 {
+    public init() {}
     var xCord: CGFloat!
     var yCord: CGFloat!
     var size: Double!
