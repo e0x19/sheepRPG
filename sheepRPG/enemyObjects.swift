@@ -8,7 +8,8 @@
 
 import Foundation
 import UIKit
-
+let goblin = player()
+let mc = player()
 
 var enemies = Array<player>()
 var sheep = player()

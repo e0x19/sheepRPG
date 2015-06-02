@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         loadEnemies()
     }
     
-    func buildMenu()
+   func buildMenu()
     {
         startbtn = UIButton.buttonWithType(UIButtonType.System) as UIButton
         startbtn.frame = CGRectMake(width/2 - 50, height/2 - 60, 100, 80)
@@ -122,9 +122,7 @@ class ViewController: UIViewController {
     }
     
     func showCredits()
-    {
-        
-    }
+    {}
     
     func clearView()
     {
@@ -133,6 +131,7 @@ class ViewController: UIViewController {
             view.removeFromSuperview()
         }
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
