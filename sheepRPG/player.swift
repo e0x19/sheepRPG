@@ -12,11 +12,7 @@ import UIKit
 
 class player
 {
-<<<<<<< HEAD
-    public init() {}
-=======
     internal init() {}
->>>>>>> origin/master
     var xCord: CGFloat!
     var yCord: CGFloat!
     var size: Double!
@@ -29,6 +25,7 @@ class player
     var xp: Double!
     var hitchance: Double!
     var image: UIImage?
+    var hp: Double!
    
     
 }
