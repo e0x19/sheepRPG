@@ -78,6 +78,8 @@ class move
     var moveName: String!
     var moveHitChance: Int!
     var moveID: Int!
+    var image: UIImage?
+    var imageView = UIImageView()
 }
 
 func hitchance(hit: Int!) -> Bool

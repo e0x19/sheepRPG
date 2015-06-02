@@ -31,6 +31,12 @@ class ViewController: UIViewController {
     //var menuBG = UIImage(named:"title") as UIImage?
     
     var console = UILabel()
+    var btn1: UIButton!
+    var btn2: UIButton!
+    var btn3: UIButton!
+    var btn4: UIButton!
+    var btnArray = Array<UIButton!> ()
+    var enemyTimer: NSTimer!
     
     // will be locally stored
     var enemyNum = 0
@@ -46,6 +52,15 @@ class ViewController: UIViewController {
     
    func buildMenu()
     {
+        btn1 = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        btn2 = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        btn3 = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        btn4 = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        btnArray.append(btn1)
+        btnArray.append(btn2)
+        btnArray.append(btn3)
+        btnArray.append(btn4)
+        
         startbtn = UIButton.buttonWithType(UIButtonType.System) as UIButton
         startbtn.frame = CGRectMake(width/2 - 50, height/2 - 60, 100, 80)
         startbtn.setBackgroundImage(start, forState: UIControlState.Normal)
@@ -96,35 +111,44 @@ class ViewController: UIViewController {
         menuLabel.textColor = UIColor.blueColor()
         menuLabel.textAlignment = NSTextAlignment.Center
         self.view.addSubview(console)
-        playerTurn(enemy)
         
-    }
-    
-    func playerTurn(enemy:player)
-    {
         var i = 0
         for sheepmove in sheep.moves
         {
-        var moveBtn = UIButton.buttonWithType(UIButtonType.System) as UIButton
-        var y: CGFloat! = height - 320 + CGFloat(30 * i)
-        moveBtn.frame = CGRectMake(5, y, 200, 20)
-        moveBtn.setTitle(sheepmove.moveName, forState:UIControlState.Normal)
-        moveBtn.addTarget(self, action:"movePress:", forControlEvents:UIControlEvents.TouchUpInside)
-        moveBtn.tag = i
-        self.view.addSubview(moveBtn)
-        i += 1
+            var moveBtn = btnArray[i]
+            var y: CGFloat! = height - 320 + CGFloat(30 * i)
+            moveBtn.frame = CGRectMake(5, y, 200, 20)
+            moveBtn.setTitle(sheepmove.moveName, forState:UIControlState.Normal)
+            moveBtn.addTarget(self, action:"movePress:", forControlEvents:UIControlEvents.TouchUpInside)
+            moveBtn.tag = i
+            i += 1
+            self.view.addSubview(moveBtn)
         }
-        
+        playerTurn()
+    }
+    
+    func playerTurn()
+    {
+        for btn in btnArray
+        {
+            btn.enabled = true
+        }
     }
     
     func movePress(sender:UIButton!)
     {
+        for btn in btnArray
+        {
+            btn.enabled = false
+        }
         attack(enemies[enemyNum], type: sheep.moves[sender.tag], attacker: sheep)
     }
     
-    func enemyTurn(enemy:player)
+    func enemyTurn()
     {
-        
+        var enemy = enemies[enemyNum]
+        var attackMove = enemy.moves[Int(arc4random_uniform(3))]
+        attack(sheep, type: attackMove, attacker: enemy)
     }
     
     func attack(target: player, type: move, attacker: player)
@@ -133,21 +157,49 @@ class ViewController: UIViewController {
         var pdmg = (100 - target.pdmgrst)/100 * type.physdmg
         var dmgtot = mdmg + pdmg
         console.text = attacker.name + " used " + type.moveName
+        type.imageView.image = type.image!
+        type.imageView.frame = CGRectMake(width/2 - 37, height/2, 75, 75)
+        self.view.addSubview(type.imageView)
+        
+        if target.name == sheep.name
+        {
+            UIView.animateWithDuration(1.5, delay: 0.0, options: nil, animations:{type.imageView.frame = CGRectMake(-75, -75, 75, 75)}, completion:{(value: Bool) in type.imageView.removeFromSuperview()})
+        }
+        else
+        {
+            UIView.animateWithDuration(1.5, delay: 0.0, options: nil, animations:{type.imageView.frame = CGRectMake(self.width+75, -75, 75, 75)}, completion:{(value: Bool) in type.imageView.removeFromSuperview()})
+        }
         
         if(hitchance(type.moveHitChance) == true)
         {
             target.hp = target.hp - dmgtot
             console.text = console.text! + " It did " + toString(dmgtot) + " damage."
             target.buildHealthBars(height)
+            
         }
         else
         {
             console.text = console.text! + " It missed."
         }
+        
+        if target.hp <= 0
+        {
+            endFight()
+        }
+        else if target.name == sheep.name
+        {
+            playerTurn()
+        }
+        else
+        {
+            enemyTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("enemyTurn"), userInfo: nil, repeats: false)
+        }
+        
     }
     
-    func endFight(enemy: player)
+    func endFight()
     {
+        clearView()
         enemyNum += 1
     }
     

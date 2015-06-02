@@ -22,29 +22,28 @@ func loadMoves()
     movePunch.magicdmg = 0.0
     movePunch.moveHitChance = 80
     movePunch.moveID = 1
+    movePunch.image = UIImage(named:"punch") as UIImage?
     
     moveKick.moveName = "Kick!"
     moveKick.physdmg = 60.0
     moveKick.magicdmg = 0.0
     moveKick.moveHitChance = 65
     moveKick.moveID = 2
+    moveKick.image = UIImage(named:"kick") as UIImage?
     
     moveShock.moveName = "Shock!"
     moveShock.physdmg = 0.0
     moveShock.magicdmg = 50.0
     moveShock.moveHitChance = 65
     moveShock.moveID = 3
+    moveShock.image = UIImage(named:"shock") as UIImage?
     
     moveFireball.moveName = "Fireball!"
     moveFireball.physdmg = 0.0
     moveFireball.magicdmg = 40.0
     moveFireball.moveHitChance = 80
     moveFireball.moveID = 4
-    
-    /*MoveSetArray.append(movePunch)
-    MoveSetArray.append(moveKick)
-    MoveSetArray.append(moveShock)
-    MoveSetArray.append(moveFireball)*/
+    moveFireball.image = UIImage(named:"fire") as UIImage?
 }
 
 var enemies = Array<player>()
@@ -52,8 +51,8 @@ var sheep = player()
 func loadEnemies()
 {
     sheep.name = "Sheep"
-    sheep.vtl = 100
-    sheep.hp = 65
+    sheep.vtl = 500
+    sheep.hp = 500
     sheep.lvl = 1
     sheep.mdmgrst = 5
     sheep.pdmgrst = 2
@@ -65,8 +64,8 @@ func loadEnemies()
 
     
     var enemy1 = player()
-    enemy1.vtl = 100
-    enemy1.hp = 67
+    enemy1.vtl = 500
+    enemy1.hp = 500
     enemy1.name = "Steve"
     enemy1.lvl = 2
     enemy1.mdmgrst = 5
