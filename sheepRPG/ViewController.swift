@@ -30,6 +30,8 @@ class ViewController: UIViewController {
     var menuLabel = UILabel()
     //var menuBG = UIImage(named:"title") as UIImage?
     
+    var console = UILabel()
+    
     // will be locally stored
     var enemyNum = 0
 
@@ -90,6 +92,10 @@ class ViewController: UIViewController {
         self.view.addSubview(enemy.healthBar)
         self.view.addSubview(enemy.healthText)
         
+        console.frame = CGRectMake(210, 50, 400, 150)
+        menuLabel.textColor = UIColor.blueColor()
+        menuLabel.textAlignment = NSTextAlignment.Center
+        self.view.addSubview(console)
         playerTurn(enemy)
         
     }
@@ -113,10 +119,7 @@ class ViewController: UIViewController {
     
     func movePress(sender:UIButton!)
     {
-        var attacker = sheep
-        var thistarget = enemies[enemyNum]
-        var thismove = sheep.moves[sender.tag]
-        attack(thistarget, type:thismove)
+        attack(enemies[enemyNum], type: sheep.moves[sender.tag], attacker: sheep)
     }
     
     func enemyTurn(enemy:player)
@@ -124,25 +127,23 @@ class ViewController: UIViewController {
         
     }
     
-    func attack(target: player, type: move)
+    func attack(target: player, type: move, attacker: player)
     {
         var mdmg = (100 - target.mdmgrst)/100 * type.magicdmg
         var pdmg = (100 - target.pdmgrst)/100 * type.physdmg
         var dmgtot = mdmg + pdmg
-        target.hp = target.hp - dmgtot
+        console.text = attacker.name + " used " + type.moveName
         
         if(hitchance(type.moveHitChance) == true)
         {
-            println("THE MOVE HITS")
-            println("PLAYER HEALTH IS")
-            println(target.hp)
+            target.hp = target.hp - dmgtot
+            console.text = console.text! + " It did " + toString(dmgtot) + " damage."
+            target.buildHealthBars(height)
         }
         else
         {
-            println("THE MOVE DOES NOT HIT")
+            console.text = console.text! + " It missed."
         }
-        
-        target.buildHealthBars(height)
     }
     
     func endFight(enemy: player)

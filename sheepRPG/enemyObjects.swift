@@ -51,6 +51,7 @@ var enemies = Array<player>()
 var sheep = player()
 func loadEnemies()
 {
+    sheep.name = "Sheep"
     sheep.vtl = 100
     sheep.hp = 65
     sheep.lvl = 1
@@ -66,6 +67,7 @@ func loadEnemies()
     var enemy1 = player()
     enemy1.vtl = 100
     enemy1.hp = 67
+    enemy1.name = "Steve"
     enemy1.lvl = 2
     enemy1.mdmgrst = 5
     enemy1.pdmgrst = 2

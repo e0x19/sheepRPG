@@ -15,6 +15,7 @@ class player
     var xCord: CGFloat!
     var yCord: CGFloat!
     var size: Double!
+    var name: String!
     var lvl: Double!
     var vtl: Double!
     var dfns: Double!
