@@ -12,11 +12,7 @@ import UIKit
 
 class player
 {
-<<<<<<< HEAD
     public init() {}
-=======
-    internal init() {}
->>>>>>> origin/master
     var xCord: CGFloat!
     var yCord: CGFloat!
     var size: Double!
@@ -29,32 +25,14 @@ class player
     var xp: Double!
     var hitchance: Double!
     var image: UIImage?
-   
-    
-}
-class moveset
-{
     var magicdmg: Double!
     var physdmg: Double!
     var moveName: String!
     var moveHitChance: Int!
     var moveID: Int!
-    
-    var move1 = moveset.self
-    var move2 = moveset.self
-    var move3 = moveset.self
-    var move4 = moveset.self
+    var entMoveArray: [player] = []
 }
-
-let moveMasterClass = moveset()
-
-let movePunch = moveset()
-let moveKick = moveset()
-let moveShock = moveset()
-let moveFireball = moveset()
-let mc = player()
-let monster = player()
-
+var MoveSetArray : [player] = []
 func MoveSetBox()
 {
     movePunch.moveName = "Punch!"
@@ -81,15 +59,17 @@ func MoveSetBox()
     moveFireball.moveHitChance = 80
     moveFireball.moveID = 4
     
-    var MoveSetArray : [moveset] = []
-    
     MoveSetArray.append(movePunch)
     MoveSetArray.append(moveKick)
     MoveSetArray.append(moveShock)
     MoveSetArray.append(moveFireball)
-   
-    
 }
+
+let movePunch = player()
+let moveKick = player()
+let moveShock = player()
+let moveFireball = player()
+
 func hitchance(hit: Int!) -> Bool
 {
     var randGen = Int(arc4random_uniform(101))
@@ -103,12 +83,12 @@ func hitchance(hit: Int!) -> Bool
     }
 }
 
-func dmgcalc(ent: player, ent2: player, move: moveset)
+func dmgcalc(ent: player, ent2: player, move: player)
 {
     var mdmg = (100 - ent.mdmgrst)/100 * move.magicdmg
     var pdmg = (100 - ent.pdmgrst)/100 * move.physdmg
     var dmgtot = mdmg + pdmg
-    var dmgfinal = ent.vtl - dmgtot
+    var dmgfinal: Double! = ent.vtl - dmgtot
     
     if(hitchance(move.moveHitChance) == true)
     {
@@ -124,10 +104,16 @@ func dmgcalc(ent: player, ent2: player, move: moveset)
 
 func initialize()
 {
-    mc.pdmgrst = 1.0
-    mc.mdmgrst = 1.0
-    mc.vtl = 100
+    mc.vtl = 100.0
+    mc.pdmgrst = 25.0
+    mc.mdmgrst = 20.0
+    
+    goblin.vtl = 100.0
+    goblin.pdmgrst = 26.0
+    goblin.mdmgrst = 25.0
+
     MoveSetBox()
-    dmgcalc(mc, monster, movePunch)
+    
+    dmgcalc(mc, goblin, MoveSetArray[0])
 }
 

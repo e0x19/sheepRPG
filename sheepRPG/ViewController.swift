@@ -38,11 +38,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        buildMenu()
+     //   buildMenu()
         initialize()
     }
     
-    func buildMenu()
+ /*   func buildMenu()
     {
         startbtn = UIButton.buttonWithType(UIButtonType.System) as UIButton
         startbtn.frame = CGRectMake(width/2 - 50, height/2 - 60, 100, 80)
@@ -79,7 +79,7 @@ class ViewController: UIViewController {
     func showCredits()
     {
         
-    }
+    }*/
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
