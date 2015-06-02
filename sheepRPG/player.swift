@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 
-
 class player
 {
     internal init() {}
@@ -26,53 +25,59 @@ class player
     var hitchance: Double!
     var image: UIImage?
     var hp: Double!
+    var moves: [move] = []
+    
+    //graphics
+    var imageView = UIImageView()
+    var healthContainer = UIView()
+    var healthBar = UIView()
+    var healthText = UILabel()
+    
+
+    func buildViews(width: CGFloat, height: CGFloat, sheep:Bool)
+    {
+        var x = width-205
+        if sheep == true
+        {
+            x = 5
+        }
+        imageView.image = image!
+        imageView.frame = CGRectMake(x, height-165, 200, 160)
+        
+        
+    }
+    
+    func buildHealthBars(height: CGFloat)
+    {
+        healthContainer.backgroundColor = UIColor.blackColor()
+        healthContainer.layer.cornerRadius = 8
+        healthContainer.frame = CGRectMake(imageView.frame.origin.x, height-190, 200, 20)
+        
+        var color = UIColor.redColor()
+        if imageView.frame.origin.x == 5
+        {
+            color = UIColor.greenColor()
+        }
+        healthBar.backgroundColor = color
+        healthBar.layer.cornerRadius = 8
+        healthBar.frame = CGRectMake(imageView.frame.origin.x, height-190, 200*CGFloat(hp/vtl), 20)
+        
+        healthText.textColor = UIColor.whiteColor()
+        healthText.textAlignment = NSTextAlignment.Center
+        healthText.text = toString(hp) + "/" + toString(vtl)
+        healthText.frame = CGRectMake(imageView.frame.origin.x, height-190, 200, 20)
+    }
+}
+
+class move
+{
+    internal init() {}
     var magicdmg: Double!
     var physdmg: Double!
     var moveName: String!
     var moveHitChance: Int!
     var moveID: Int!
-    var entMoveArray: [player] = []
-    
-    
 }
-var MoveSetArray : [player] = []
-
-func MoveSetBox()
-{
-    movePunch.moveName = "Punch!"
-    movePunch.physdmg = 55.0
-    movePunch.magicdmg = 0.0
-    movePunch.moveHitChance = 80
-    movePunch.moveID = 1
-    
-    moveKick.moveName = "Kick!"
-    moveKick.physdmg = 60.0
-    moveKick.magicdmg = 0.0
-    moveKick.moveHitChance = 65
-    moveKick.moveID = 2
-    
-    moveShock.moveName = "Shock!"
-    moveShock.physdmg = 0.0
-    moveShock.magicdmg = 50.0
-    moveShock.moveHitChance = 65
-    moveShock.moveID = 3
-    
-    moveFireball.moveName = "Fireball!"
-    moveFireball.physdmg = 0.0
-    moveFireball.magicdmg = 40.0
-    moveFireball.moveHitChance = 80
-    moveFireball.moveID = 4
-    
-    MoveSetArray.append(movePunch)
-    MoveSetArray.append(moveKick)
-    MoveSetArray.append(moveShock)
-    MoveSetArray.append(moveFireball)
-}
-
-let movePunch = player()
-let moveKick = player()
-let moveShock = player()
-let moveFireball = player()
 
 func hitchance(hit: Int!) -> Bool
 {
@@ -87,27 +92,11 @@ func hitchance(hit: Int!) -> Bool
     }
 }
 
-func dmgcalc(ent: player, ent2: player, move: player)
-{
-    var mdmg = (100 - ent.mdmgrst)/100 * move.magicdmg
-    var pdmg = (100 - ent.pdmgrst)/100 * move.physdmg
-    var dmgtot = mdmg + pdmg
-    var dmgfinal: Double! = ent.vtl - dmgtot
-    
-    if(hitchance(move.moveHitChance) == true)
-    {
-        println("THE MOVE HITS")
-        println("PLAYER HEALTH IS")
-        println(dmgfinal)
-    }
-    else
-    {
-        println("THE MOVE DOES NOT HIT")
-    }
-}
-
 func initialize()
 {
+    loadEnemies()
+    loadMoves()
+    
     mc.vtl = 100.0
     mc.pdmgrst = 25.0
     mc.mdmgrst = 20.0
@@ -115,9 +104,7 @@ func initialize()
     goblin.vtl = 100.0
     goblin.pdmgrst = 26.0
     goblin.mdmgrst = 25.0
-
-    MoveSetBox()
     
-    dmgcalc(mc, goblin, MoveSetArray[0])
+    //dmgcalc(mc, goblin, MoveSetArray[0])
 }
 

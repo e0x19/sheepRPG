@@ -40,7 +40,6 @@ class ViewController: UIViewController {
         height = screen.height
         buildMenu()
         initialize()
-        loadEnemies()
     }
     
    func buildMenu()
@@ -71,54 +70,84 @@ class ViewController: UIViewController {
     {
         clearView()
         startFight(enemies[enemyNum])
-        enemyNum += 1
     }
     
     func startFight(enemy:player)
     {
-        var playerView = UIImageView()
-        playerView.image = sheep.image!
-        playerView.frame = CGRectMake(5, height-165, 200, 160)
-        self.view.addSubview(playerView)
-        var enemyView = UIImageView()
-        enemyView.image = enemy.image!
-        enemyView.frame = CGRectMake(width-205, height-165, 200, 160)
-        self.view.addSubview(enemyView)
+
+        enemy.buildViews(width, height: height, sheep: false)
+        sheep.buildViews(width, height: height, sheep: true)
+        enemy.buildHealthBars(height)
+        sheep.buildHealthBars(height)
+        self.view.addSubview(sheep.imageView)
+        self.view.addSubview(enemy.imageView)
+
+        self.view.addSubview(sheep.healthContainer)
+        self.view.addSubview(sheep.healthBar)
+        self.view.addSubview(sheep.healthText)
         
-        var sheepHealthBarContainer = UIView()
-        sheepHealthBarContainer.backgroundColor = UIColor.blackColor()
-        sheepHealthBarContainer.frame = CGRectMake(5, height-190, 200, 20)
-        self.view.addSubview(sheepHealthBarContainer)
+        self.view.addSubview(enemy.healthContainer)
+        self.view.addSubview(enemy.healthBar)
+        self.view.addSubview(enemy.healthText)
         
-        var sheepHealthBar = UIView()
-        sheepHealthBar.backgroundColor = UIColor.greenColor()
-        sheepHealthBar.frame = CGRectMake(5, height-190, 200*CGFloat(sheep.hp/sheep.vtl), 20)
-        self.view.addSubview(sheepHealthBar)
+        playerTurn(enemy)
         
-        var sheepHealthText = UILabel()
-        sheepHealthText.textColor = UIColor.whiteColor()
-        sheepHealthText.textAlignment = NSTextAlignment.Center
-        sheepHealthText.text = toString(sheep.hp) + "/" + toString(sheep.vtl)
-        sheepHealthText.frame = CGRectMake(5, height-190, 200, 20)
-        self.view.addSubview(sheepHealthText)
+    }
+    
+    func playerTurn(enemy:player)
+    {
+        var i = 0
+        for sheepmove in sheep.moves
+        {
+        var moveBtn = UIButton.buttonWithType(UIButtonType.System) as UIButton
+        var y: CGFloat! = height - 320 + CGFloat(30 * i)
+        moveBtn.frame = CGRectMake(5, y, 200, 20)
+        moveBtn.setTitle(sheepmove.moveName, forState:UIControlState.Normal)
+        moveBtn.addTarget(self, action:"movePress:", forControlEvents:UIControlEvents.TouchUpInside)
+        moveBtn.tag = i
+        self.view.addSubview(moveBtn)
+        i += 1
+        }
         
-        var enemyHealthBarContainer = UIView()
-        enemyHealthBarContainer.backgroundColor = UIColor.blackColor()
-        enemyHealthBarContainer.frame = CGRectMake(width-205, height-190, 200, 20)
-        self.view.addSubview(enemyHealthBarContainer)
+    }
+    
+    func movePress(sender:UIButton!)
+    {
+        var attacker = sheep
+        var thistarget = enemies[enemyNum]
+        var thismove = sheep.moves[sender.tag]
+        attack(thistarget, type:thismove)
+    }
+    
+    func enemyTurn(enemy:player)
+    {
         
-        var enemyHealthBar = UIView()
-        enemyHealthBar.backgroundColor = UIColor.redColor()
-        enemyHealthBar.frame = CGRectMake(width-205, height-190, 200*CGFloat(sheep.hp/sheep.vtl), 20)
-        self.view.addSubview(enemyHealthBar)
+    }
+    
+    func attack(target: player, type: move)
+    {
+        var mdmg = (100 - target.mdmgrst)/100 * type.magicdmg
+        var pdmg = (100 - target.pdmgrst)/100 * type.physdmg
+        var dmgtot = mdmg + pdmg
+        target.hp = target.hp - dmgtot
         
-        var enemyHealthText = UILabel()
-        enemyHealthText.textColor = UIColor.whiteColor()
-        enemyHealthText.textAlignment = NSTextAlignment.Center
-        enemyHealthText.text = toString(enemy.hp) + "/" + toString(enemy.vtl)
-        enemyHealthText.frame = CGRectMake(width-205, height-190, 200, 20)
-        self.view.addSubview(enemyHealthText)
+        if(hitchance(type.moveHitChance) == true)
+        {
+            println("THE MOVE HITS")
+            println("PLAYER HEALTH IS")
+            println(target.hp)
+        }
+        else
+        {
+            println("THE MOVE DOES NOT HIT")
+        }
         
+        target.buildHealthBars(height)
+    }
+    
+    func endFight(enemy: player)
+    {
+        enemyNum += 1
     }
     
     func showCredits()
