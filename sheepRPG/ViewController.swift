@@ -28,9 +28,7 @@ class ViewController: UIViewController {
     var start = UIImage(named:"Start") as UIImage?
     var creditbtn: UIButton!
     var menuLabel = UILabel()
-    var menuBG = UIImage(named:"title") as UIImage?
-    
-    var sheep = player()
+    //var menuBG = UIImage(named:"title") as UIImage?
     
     // will be locally stored
     var enemyNum = 0
@@ -38,8 +36,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        width = screen.width
+        height = screen.height
         buildMenu()
         initialize()
+        loadEnemies()
     }
     
     func buildMenu()
@@ -68,17 +69,69 @@ class ViewController: UIViewController {
    
     func startGame()
     {
-        
-      //startFight(enemy)
+        clearView()
+        startFight(enemies[enemyNum])
+        enemyNum += 1
     }
     
     func startFight(enemy:player)
     {
+        var playerView = UIImageView()
+        playerView.image = sheep.image!
+        playerView.frame = CGRectMake(5, height-165, 200, 160)
+        self.view.addSubview(playerView)
+        var enemyView = UIImageView()
+        enemyView.image = enemy.image!
+        enemyView.frame = CGRectMake(width-205, height-165, 200, 160)
+        self.view.addSubview(enemyView)
+        
+        var sheepHealthBarContainer = UIView()
+        sheepHealthBarContainer.backgroundColor = UIColor.blackColor()
+        sheepHealthBarContainer.frame = CGRectMake(5, height-190, 200, 20)
+        self.view.addSubview(sheepHealthBarContainer)
+        
+        var sheepHealthBar = UIView()
+        sheepHealthBar.backgroundColor = UIColor.greenColor()
+        sheepHealthBar.frame = CGRectMake(5, height-190, 200*CGFloat(sheep.hp/sheep.vtl), 20)
+        self.view.addSubview(sheepHealthBar)
+        
+        var sheepHealthText = UILabel()
+        sheepHealthText.textColor = UIColor.whiteColor()
+        sheepHealthText.textAlignment = NSTextAlignment.Center
+        sheepHealthText.text = toString(sheep.hp) + "/" + toString(sheep.vtl)
+        sheepHealthText.frame = CGRectMake(5, height-190, 200, 20)
+        self.view.addSubview(sheepHealthText)
+        
+        var enemyHealthBarContainer = UIView()
+        enemyHealthBarContainer.backgroundColor = UIColor.blackColor()
+        enemyHealthBarContainer.frame = CGRectMake(width-205, height-190, 200, 20)
+        self.view.addSubview(enemyHealthBarContainer)
+        
+        var enemyHealthBar = UIView()
+        enemyHealthBar.backgroundColor = UIColor.redColor()
+        enemyHealthBar.frame = CGRectMake(width-205, height-190, 200*CGFloat(sheep.hp/sheep.vtl), 20)
+        self.view.addSubview(enemyHealthBar)
+        
+        var enemyHealthText = UILabel()
+        enemyHealthText.textColor = UIColor.whiteColor()
+        enemyHealthText.textAlignment = NSTextAlignment.Center
+        enemyHealthText.text = toString(enemy.hp) + "/" + toString(enemy.vtl)
+        enemyHealthText.frame = CGRectMake(width-205, height-190, 200, 20)
+        self.view.addSubview(enemyHealthText)
         
     }
+    
     func showCredits()
     {
         
+    }
+    
+    func clearView()
+    {
+        for view in self.view.subviews
+        {
+            view.removeFromSuperview()
+        }
     }
 
     override func didReceiveMemoryWarning() {

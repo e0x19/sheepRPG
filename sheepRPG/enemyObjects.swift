@@ -11,16 +11,24 @@ import UIKit
 
 
 var enemies = Array<player>()
-func createEnemies()
+var sheep = player()
+func loadEnemies()
 {
+    sheep.vtl = 100
+    sheep.hp = 65
+    sheep.lvl = 1
+    sheep.mdmgrst = 5
+    sheep.pdmgrst = 2
+    sheep.image = UIImage(named:"sheep") as UIImage?
+    
     var enemy1 = player()
     enemy1.vtl = 100
+    enemy1.hp = 67
     enemy1.lvl = 2
     enemy1.mdmgrst = 5
     enemy1.pdmgrst = 2
-    enemy1.image = nil
-    
-    
+    enemy1.image = UIImage(named:"red") as UIImage?
+    enemies.append(enemy1)
 }
 
 

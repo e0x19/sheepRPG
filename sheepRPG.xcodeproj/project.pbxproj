@@ -14,7 +14,10 @@
 		96CA38CF1B18B1AF00C05FBA /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 96CA38CD1B18B1AF00C05FBA /* LaunchScreen.xib */; };
 		96CA38DB1B18B1AF00C05FBA /* sheepRPGTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96CA38DA1B18B1AF00C05FBA /* sheepRPGTests.swift */; };
 		9F0881B41B18BB8900CA657F /* player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F0881B31B18BB8900CA657F /* player.swift */; };
-		B43970221B1CB04F00ABC716 /* enemyObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43970211B1CB04F00ABC716 /* enemyObjects.swift */; };
+		B43970241B1CCDCA00ABC716 /* red.png in Resources */ = {isa = PBXBuildFile; fileRef = B43970231B1CCDCA00ABC716 /* red.png */; };
+		B43970261B1CCDD200ABC716 /* enemyObjects.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43970251B1CCDD200ABC716 /* enemyObjects.swift */; };
+		B439702D1B1CD37F00ABC716 /* sheep.png in Resources */ = {isa = PBXBuildFile; fileRef = B439702B1B1CD37F00ABC716 /* sheep.png */; };
+		B439702E1B1CD37F00ABC716 /* start.png in Resources */ = {isa = PBXBuildFile; fileRef = B439702C1B1CD37F00ABC716 /* start.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +42,10 @@
 		96CA38D91B18B1AF00C05FBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		96CA38DA1B18B1AF00C05FBA /* sheepRPGTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sheepRPGTests.swift; sourceTree = "<group>"; };
 		9F0881B31B18BB8900CA657F /* player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = player.swift; sourceTree = "<group>"; };
-		B43970211B1CB04F00ABC716 /* enemyObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = enemyObjects.swift; path = ../enemyObjects.swift; sourceTree = "<group>"; };
+		B43970231B1CCDCA00ABC716 /* red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = red.png; sourceTree = "<group>"; };
+		B43970251B1CCDD200ABC716 /* enemyObjects.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = enemyObjects.swift; sourceTree = "<group>"; };
+		B439702B1B1CD37F00ABC716 /* sheep.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = sheep.png; sourceTree = "<group>"; };
+		B439702C1B1CD37F00ABC716 /* start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = start.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,8 +89,11 @@
 			children = (
 				96CA38C41B18B1AF00C05FBA /* AppDelegate.swift */,
 				9F0881B31B18BB8900CA657F /* player.swift */,
-				B43970211B1CB04F00ABC716 /* enemyObjects.swift */,
+				B43970251B1CCDD200ABC716 /* enemyObjects.swift */,
 				96CA38C61B18B1AF00C05FBA /* ViewController.swift */,
+				B43970231B1CCDCA00ABC716 /* red.png */,
+				B439702B1B1CD37F00ABC716 /* sheep.png */,
+				B439702C1B1CD37F00ABC716 /* start.png */,
 				96CA38C81B18B1AF00C05FBA /* Main.storyboard */,
 				96CA38CB1B18B1AF00C05FBA /* Images.xcassets */,
 				96CA38CD1B18B1AF00C05FBA /* LaunchScreen.xib */,
@@ -198,8 +207,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B439702D1B1CD37F00ABC716 /* sheep.png in Resources */,
 				96CA38CA1B18B1AF00C05FBA /* Main.storyboard in Resources */,
+				B43970241B1CCDCA00ABC716 /* red.png in Resources */,
 				96CA38CF1B18B1AF00C05FBA /* LaunchScreen.xib in Resources */,
+				B439702E1B1CD37F00ABC716 /* start.png in Resources */,
 				96CA38CC1B18B1AF00C05FBA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,7 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				96CA38C71B18B1AF00C05FBA /* ViewController.swift in Sources */,
-				B43970221B1CB04F00ABC716 /* enemyObjects.swift in Sources */,
+				B43970261B1CCDD200ABC716 /* enemyObjects.swift in Sources */,
 				9F0881B41B18BB8900CA657F /* player.swift in Sources */,
 				96CA38C51B18B1AF00C05FBA /* AppDelegate.swift in Sources */,
 			);
@@ -381,6 +393,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = sheepRPGTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sheepRPG.app/sheepRPG";
@@ -396,6 +409,7 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = sheepRPGTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/sheepRPG.app/sheepRPG";
