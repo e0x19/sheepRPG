@@ -13,22 +13,17 @@ import AVFoundation
 class ViewController: UIViewController {
     
     var inGamePlayer = AVAudioPlayer()
-    //var gameURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("game", ofType: "wav")!)
-    
-    var menuPlayer = AVAudioPlayer()
-    //var menuURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("menu", ofType: "wav")!)
-    
-    var sfxPlayer = AVAudioPlayer()
+    var soundURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("game", ofType: "wav")!)
     
     var screen: CGRect! = UIScreen.mainScreen().bounds
     var width: CGFloat!
     var height: CGFloat!
     
+    var bg = UIImage(named: "bg") as UIImage?
     var startbtn: UIButton!
     var start = UIImage(named:"Start") as UIImage?
     var creditbtn: UIButton!
     var menuLabel = UILabel()
-    //var menuBG = UIImage(named:"title") as UIImage?
     
     var console = UILabel()
     var btn1: UIButton!
@@ -38,7 +33,9 @@ class ViewController: UIViewController {
     var btnArray = Array<UIButton!> ()
     var enemyTimer: NSTimer!
     
-    // will be locally stored
+    var dead = false
+    var fightEnded = false
+    
     var enemyNum = 0
 
     override func viewDidLoad() {
@@ -46,12 +43,17 @@ class ViewController: UIViewController {
         // Do any additional setup after loading the view, typically from a nib.
         width = screen.width
         height = screen.height
+        self.view.backgroundColor = UIColor(patternImage:bg!)
         buildMenu()
         initialize()
     }
     
    func buildMenu()
     {
+        inGamePlayer = AVAudioPlayer(contentsOfURL: soundURL, error: nil)
+        inGamePlayer.numberOfLoops = -1
+        inGamePlayer.play()
+        
         btn1 = UIButton.buttonWithType(UIButtonType.System) as UIButton
         btn2 = UIButton.buttonWithType(UIButtonType.System) as UIButton
         btn3 = UIButton.buttonWithType(UIButtonType.System) as UIButton
@@ -86,28 +88,33 @@ class ViewController: UIViewController {
     func startGame()
     {
         clearView()
+        reloadEnemyData()
         startFight(enemies[enemyNum])
     }
     
     func startFight(enemy:player)
     {
-
+        console.text = ""
         enemy.buildViews(width, height: height, sheep: false)
         sheep.buildViews(width, height: height, sheep: true)
         enemy.buildHealthBars(height)
         sheep.buildHealthBars(height)
+        sheep.buildManaBars(height)
         self.view.addSubview(sheep.imageView)
         self.view.addSubview(enemy.imageView)
 
         self.view.addSubview(sheep.healthContainer)
         self.view.addSubview(sheep.healthBar)
         self.view.addSubview(sheep.healthText)
+        self.view.addSubview(sheep.manaContainer)
+        self.view.addSubview(sheep.manaBar)
+        self.view.addSubview(sheep.manaText)
         
         self.view.addSubview(enemy.healthContainer)
         self.view.addSubview(enemy.healthBar)
         self.view.addSubview(enemy.healthText)
         
-        console.frame = CGRectMake(210, 50, 400, 150)
+        console.frame = CGRectMake(210, 50, width, 150)
         menuLabel.textColor = UIColor.blueColor()
         menuLabel.textAlignment = NSTextAlignment.Center
         self.view.addSubview(console)
@@ -129,9 +136,15 @@ class ViewController: UIViewController {
     
     func playerTurn()
     {
+        var i = 0
         for btn in btnArray
         {
             btn.enabled = true
+            if sheep.moves[i].manaCost > sheep.mp
+            {
+                btn.enabled = false
+            }
+            i++
         }
     }
     
@@ -141,13 +154,22 @@ class ViewController: UIViewController {
         {
             btn.enabled = false
         }
+        sheep.mp = sheep.mp - sheep.moves[sender.tag].manaCost
         attack(enemies[enemyNum], type: sheep.moves[sender.tag], attacker: sheep)
     }
     
     func enemyTurn()
     {
         var enemy = enemies[enemyNum]
-        var attackMove = enemy.moves[Int(arc4random_uniform(3))]
+        if sheep.mp > sheep.mana - 10
+        {
+            sheep.mp = sheep.mana
+        }
+        else
+        {
+            sheep.mp = sheep.mp + 10
+        }
+        var attackMove = enemy.moves[Int(arc4random_uniform(4))]
         attack(sheep, type: attackMove, attacker: enemy)
     }
     
@@ -160,47 +182,95 @@ class ViewController: UIViewController {
         type.imageView.image = type.image!
         type.imageView.frame = CGRectMake(width/2 - 37, height/2, 75, 75)
         self.view.addSubview(type.imageView)
+        var particlePos: CGFloat!
         
         if target.name == sheep.name
         {
-            UIView.animateWithDuration(1.5, delay: 0.0, options: nil, animations:{type.imageView.frame = CGRectMake(-75, -75, 75, 75)}, completion:{(value: Bool) in type.imageView.removeFromSuperview()})
+            particlePos = -75
         }
         else
         {
-            UIView.animateWithDuration(1.5, delay: 0.0, options: nil, animations:{type.imageView.frame = CGRectMake(self.width+75, -75, 75, 75)}, completion:{(value: Bool) in type.imageView.removeFromSuperview()})
+            particlePos = width+75
         }
-        
-        if(hitchance(type.moveHitChance) == true)
-        {
-            target.hp = target.hp - dmgtot
-            console.text = console.text! + " It did " + toString(dmgtot) + " damage."
-            target.buildHealthBars(height)
-            
-        }
-        else
-        {
-            console.text = console.text! + " It missed."
-        }
-        
-        if target.hp <= 0
-        {
-            endFight()
-        }
-        else if target.name == sheep.name
-        {
-            playerTurn()
-        }
-        else
-        {
-            enemyTimer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: Selector("enemyTurn"), userInfo: nil, repeats: false)
-        }
+        UIView.animateWithDuration(1.5,
+            delay: 0.0, options: nil,
+            animations:{
+                type.imageView.frame = CGRectMake(particlePos, -75, 75, 75)
+                sheep.buildManaBars(self.height)
+            },
+            completion:
+        {(value: Bool) in type.imageView.removeFromSuperview()
+            if(hitchance(type.moveHitChance) == true)
+            {
+                target.hp = target.hp - dmgtot
+                self.console.text = self.console.text! + " It did " + toString(dmgtot) + " damage."
+                target.buildHealthBars(self.height)
+            }
+            else
+            {
+                self.console.text = self.console.text! + " It missed."
+            }
+
+            if target.hp <= 0
+            {
+                self.endFight()
+            }
+            else if target.name == sheep.name
+            {
+                self.playerTurn()
+            }
+            else
+            {
+                self.enemyTimer = NSTimer.scheduledTimerWithTimeInterval(1.5, target: self, selector: Selector("enemyTurn"), userInfo: nil, repeats: false)
+            }
+        })
         
     }
     
     func endFight()
     {
         clearView()
-        enemyNum += 1
+        var winner = enemies[enemyNum]
+        fightEnded = true
+        if sheep.hp > 0
+        {
+            winner = sheep
+            console.text = "Congratulations, you've killed " + enemies[enemyNum].name + ".  Tap to continue"
+            enemyNum = enemyNum + 1
+            if enemyNum == enemies.count
+            {
+                dead = true
+                enemyNum = 0
+                win()
+            }
+        }
+        else
+        {
+            dead = true
+            console.text = "You have been killed by " + winner.name + ". Tap to restart"
+            enemyNum = 0
+        }
+        self.view.addSubview(console)
+        
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent)
+    {
+        if dead == true && fightEnded == true
+        {
+            startGame()
+        }
+        else if fightEnded == true
+        {
+            startFight(enemies[enemyNum])
+        }
+    }
+
+    func win()
+    {
+        clearView()
+        console.text = "Hot damn, you won. Tap to restart."
+        self.view.addSubview(console)
     }
     
     func showCredits()

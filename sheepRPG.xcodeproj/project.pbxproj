@@ -22,6 +22,12 @@
 		B43970341B1E34D000ABC716 /* kick.png in Resources */ = {isa = PBXBuildFile; fileRef = B43970301B1E34D000ABC716 /* kick.png */; };
 		B43970351B1E34D000ABC716 /* punch.png in Resources */ = {isa = PBXBuildFile; fileRef = B43970311B1E34D000ABC716 /* punch.png */; };
 		B43970361B1E34D000ABC716 /* shock.png in Resources */ = {isa = PBXBuildFile; fileRef = B43970321B1E34D000ABC716 /* shock.png */; };
+		B43970381B1F480200ABC716 /* bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B43970371B1F480200ABC716 /* bg.png */; };
+		B439703A1B1F495500ABC716 /* game.wav in Resources */ = {isa = PBXBuildFile; fileRef = B43970391B1F495500ABC716 /* game.wav */; };
+		B439703F1B1F4B6900ABC716 /* cow.png in Resources */ = {isa = PBXBuildFile; fileRef = B439703B1B1F4B6900ABC716 /* cow.png */; };
+		B43970411B1F4B6900ABC716 /* goose.png in Resources */ = {isa = PBXBuildFile; fileRef = B439703D1B1F4B6900ABC716 /* goose.png */; };
+		B43970421B1F4B6900ABC716 /* pig.png in Resources */ = {isa = PBXBuildFile; fileRef = B439703E1B1F4B6900ABC716 /* pig.png */; };
+		B43970441B1F50B000ABC716 /* transparent.png in Resources */ = {isa = PBXBuildFile; fileRef = B43970431B1F50B000ABC716 /* transparent.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +60,12 @@
 		B43970301B1E34D000ABC716 /* kick.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = kick.png; sourceTree = "<group>"; };
 		B43970311B1E34D000ABC716 /* punch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = punch.png; sourceTree = "<group>"; };
 		B43970321B1E34D000ABC716 /* shock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shock.png; sourceTree = "<group>"; };
+		B43970371B1F480200ABC716 /* bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg.png; sourceTree = "<group>"; };
+		B43970391B1F495500ABC716 /* game.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = game.wav; sourceTree = "<group>"; };
+		B439703B1B1F4B6900ABC716 /* cow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cow.png; sourceTree = "<group>"; };
+		B439703D1B1F4B6900ABC716 /* goose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = goose.png; sourceTree = "<group>"; };
+		B439703E1B1F4B6900ABC716 /* pig.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pig.png; sourceTree = "<group>"; };
+		B43970431B1F50B000ABC716 /* transparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = transparent.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +118,12 @@
 				B43970301B1E34D000ABC716 /* kick.png */,
 				B43970311B1E34D000ABC716 /* punch.png */,
 				B43970321B1E34D000ABC716 /* shock.png */,
+				B43970371B1F480200ABC716 /* bg.png */,
+				B439703B1B1F4B6900ABC716 /* cow.png */,
+				B439703D1B1F4B6900ABC716 /* goose.png */,
+				B439703E1B1F4B6900ABC716 /* pig.png */,
+				B43970431B1F50B000ABC716 /* transparent.png */,
+				B43970391B1F495500ABC716 /* game.wav */,
 				96CA38C81B18B1AF00C05FBA /* Main.storyboard */,
 				96CA38CB1B18B1AF00C05FBA /* Images.xcassets */,
 				96CA38CD1B18B1AF00C05FBA /* LaunchScreen.xib */,
@@ -219,15 +237,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B43970411B1F4B6900ABC716 /* goose.png in Resources */,
+				B439703F1B1F4B6900ABC716 /* cow.png in Resources */,
 				B43970361B1E34D000ABC716 /* shock.png in Resources */,
 				B43970331B1E34D000ABC716 /* fire.png in Resources */,
+				B43970441B1F50B000ABC716 /* transparent.png in Resources */,
 				B439702D1B1CD37F00ABC716 /* sheep.png in Resources */,
 				96CA38CA1B18B1AF00C05FBA /* Main.storyboard in Resources */,
 				B43970241B1CCDCA00ABC716 /* red.png in Resources */,
 				96CA38CF1B18B1AF00C05FBA /* LaunchScreen.xib in Resources */,
+				B439703A1B1F495500ABC716 /* game.wav in Resources */,
+				B43970421B1F4B6900ABC716 /* pig.png in Resources */,
 				B43970341B1E34D000ABC716 /* kick.png in Resources */,
 				B439702E1B1CD37F00ABC716 /* start.png in Resources */,
 				B43970351B1E34D000ABC716 /* punch.png in Resources */,
+				B43970381B1F480200ABC716 /* bg.png in Resources */,
 				96CA38CC1B18B1AF00C05FBA /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
